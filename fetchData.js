@@ -1,6 +1,5 @@
-const titleEl = document.getElementById("songTitle")
-const albumEl = document.getElementById("songAlbum")
-const artistsEl = document.getElementById("songArtists")
+const infoEl = document.getElementById("songInfo")
+const imageEl = document.getElementById("albumArt")
 
 document.addEventListener('DOMContentLoaded', setDetails)
 
@@ -15,8 +14,8 @@ async function setDetails() {
 	let data = await fetch(dataAPI+fileName, {method: 'POST'}).then(response => response.json()).
 	then(data => {
 		console.log(data)
-		titleEl.innerText = data.title
-		albumEl.innerText = data.album
-		artistsEl.innerText = data.artists.join(", ")
+		infoEl.innerText = `${data.title} - ${data.album} - ${data.artists.join(", ")}`
+		console.log(apiURL+imagesAPI+fileName)
+		imageEl.src = imagesAPI+fileName
 	})
 }
