@@ -7,16 +7,12 @@
 	</head>
 	<body>
 		<div id="files" class="files">
-			<ul>
-				<li> Test </li>
-				<li> Test </li>
-			</ul>
+			<ul id="fileListing"></ul>
 		</div>
-		<hr>
 		<div class="player">
-			<img id="albumArt" width="128" height="128"/>
+			<img id="albumArt" width="256" height="256"/>
 			<div class="playerInfo">
-				<span id="songInfo" class="songInfo">Test Song Info</span>
+				<span id="songInfo" class="songInfo">Loading track....</span>
 				<audio id="songAudio" controls>
 					<source id="songAudioSrc"></source>
 				</audio>
@@ -24,5 +20,6 @@
 		</div>
 		<script src="scrollText.js"></script>
 		<script src="fetchData.js"></script>
+		<script src="setListing.js"></script>
 	</body>
 </html>

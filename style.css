@@ -2,6 +2,8 @@
 	--bg-color: #000000;
 	--text-main-color: #06FFFF;
 	--main-margin: 10px;
+
+	--font-size-large: 32px;
 }
 
 @font-face {
@@ -18,6 +20,9 @@ body {
 	display: inline-flex;
 	margin: var(--main-margin);
 	gap: var(--main-margin);
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
 }
 
 .player {
@@ -40,8 +45,21 @@ body {
 	overflow: hidden;
 	white-space: nowrap;
 	width: 500px;
+	font-size: var(--font-size-large);
 }
 
+.files {
+	overflow-y: auto;
+	overflow-x: hidden;
+	width: 40vw;
+	height: 90vh;
+}
+.fileLink {
+	overflow: hidden;
+	white-space: nowrap;
+}
 ul {
 	list-style-type: none;
+	padding: 0;
+	margin: 0;
 }
