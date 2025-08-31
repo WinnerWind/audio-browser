@@ -40,6 +40,9 @@ body {
 	border: var(--border-main);
 }
 
+.playerPlaylistsSorter {
+	width: 54vw;
+}
 .player {
 	display: flex;
 	width: 100%;
@@ -47,13 +50,26 @@ body {
 	border: var(--border-main);
 	padding: var(--main-margin);
 }
+.playlists {
+	width: 100%;
+	height: 50.5%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	gap: var(--main-margin);
+	border: var(--border-main);
+	padding: var(--main-margin);
+}
 
+.playlistList {
+	height: 32vh;
+}
 .playerInfo {
 	display: flex;
 	width: 100%;
 	flex-direction: column;
 	gap: var(--main-margin);
 	align-content: left;
+	margin-bottom: var(--main-margin);
 }
 
 .songInfo {
@@ -102,7 +118,7 @@ ul {
   background: var(--bg-color);
   border: var(--border-main);
   accent-color: var(--text-main-color);
-  width: 100%;
+  width: 36.1vw;
   height: 12px; /* approximate height */
   cursor: pointer;
 }
@@ -165,6 +181,9 @@ a {
   color: var(--text-main-color);
 }
 
+a.enabledLink {
+	color: var(--text-accent-color) !important;
+}
 a:link {
   text-decoration: none;
   color: var(--text-main-color);

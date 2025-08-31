@@ -3,6 +3,7 @@ const imageEl = document.getElementById("albumArt")
 const audioEl = document.getElementById("songAudioSrc")
 const audioParentEl = document.getElementById("songAudio")
 const filesEl = document.getElementById("fileListing")
+const playlistContainer = document.getElementById("playlists")
 
 document.addEventListener('DOMContentLoaded', SetListing)
 document.addEventListener('DOMContentLoaded', setDetails)
@@ -27,6 +28,7 @@ async function setDetails() {
 		} else {
 			infoEl.innerText = "NO AUDIO INSERTED"
 			imageEl.style.display = 'none'
+			playlistContainer.style.display = 'none'
 			audioParentEl.style.display = 'none'
 		}
 	})
