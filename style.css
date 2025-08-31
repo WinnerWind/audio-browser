@@ -58,6 +58,15 @@ body {
 	overflow: hidden;
 	white-space: nowrap;
 }
+
+.searchBar {
+	width: 100%;
+}
+
+.leftPanel {
+	margin: var(--main-margin);
+}
+
 ul {
 	list-style-type: none;
 	padding: 0;
