@@ -3,7 +3,7 @@ let filesEl = document.getElementById("fileListing")
 document.addEventListener('DOMContentLoaded', SetListing)
 
 function SetListing() {
-	let apiURL = "http://192.168.68.105:5001/music/listing"
+	let apiURL = "https://api.winnerwind.in/music/listing"
 
 	let currentPath = window.location.pathname;
 	let basePath = currentPath.substring(0, currentPath.lastIndexOf('/'));

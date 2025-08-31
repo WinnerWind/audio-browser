@@ -6,8 +6,8 @@ const audioParentEl = document.getElementById("songAudio")
 document.addEventListener('DOMContentLoaded', setDetails)
 
 async function setDetails() {
-	// let apiURL = "https://api.winnerwind.in/music/"
-	let apiURL = "http://192.168.68.105:5001/music/"
+	let apiURL = "https://api.winnerwind.in/music/"
+	// let apiURL = "http://192.168.68.105:5001/music/"
 	let imagesAPI = apiURL + "images/"
 	let dataAPI = apiURL + "data/"
 	let audioAPI = apiURL + "audio/"
