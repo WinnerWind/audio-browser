@@ -16,6 +16,7 @@
 	--play-button: url('assets/play.png');
 	--pause-button: url('assets/pause.png');
 	--download-button: url('assets/download.png');
+	--eject-button: url('assets/eject.png');
 	--progress-grabber: url('assets/grabber-large.png');
 }
 
@@ -155,6 +156,9 @@ ul {
 }
 .iconButton.download {
 	background-image: var(--download-button);
+}
+.iconButton.home {
+	background-image: var(--eject-button);
 }
 /* Links */
 a {

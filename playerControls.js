@@ -1,7 +1,10 @@
 const playPauseButton = document.getElementById("playPauseButton")
 const downloadButton = document.getElementById("download")
+const homeButton = document.getElementById("home")
+
 const progress = document.getElementById("playerProgress")
 const timeEl = document.getElementById("time")
+
 const audio = document.getElementById("songAudio")
 const audioSrc = document.getElementById("songAudioSrc")
 
@@ -54,4 +57,11 @@ audio.addEventListener('timeupdate', () =>{
 
 progress.addEventListener('input', () => {
 	audio.currentTime = progress.value
+})
+
+home.addEventListener('click', () => {
+	let url = window.location.href
+	let fileName = (url.split('/')).pop()
+	let homeUrl = url.replace(fileName, "")
+	window.open(homeUrl, "_self")
 })
