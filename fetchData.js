@@ -16,9 +16,15 @@ async function setDetails() {
 
 	let data = await fetch(dataAPI+fileName).then(response => response.json()).
 	then(data => {
-		infoEl.innerText = `${data.title} - ${data.album} - ${data.artists.join(", ")}`
-		imageEl.src = imagesAPI+fileName
-		audioEl.src = audioAPI+fileName
-		audioParentEl.load()
+		if (data.title != "Path does not exist!") {
+			infoEl.innerText = `${data.title} - ${data.album} - ${data.artists.join(", ")}`
+			imageEl.src = imagesAPI+fileName
+			audioEl.src = audioAPI+fileName
+			audioParentEl.load()
+		} else {
+			infoEl.innerText = "Browse files on the left."
+			imageEl.style.display = 'none'
+			audioParentEl.style.display = 'none'
+		}
 	})
 }
