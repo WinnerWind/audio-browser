@@ -52,3 +52,6 @@ audio.addEventListener('timeupdate', () =>{
 	timeEl.innerText = text
 })
 
+progress.addEventListener('input', () => {
+	audio.currentTime = progress.value
+})

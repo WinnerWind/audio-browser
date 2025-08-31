@@ -16,6 +16,7 @@
 	--play-button: url('assets/play.png');
 	--pause-button: url('assets/pause.png');
 	--download-button: url('assets/download.png');
+	--progress-grabber: url('assets/grabber-large.png');
 }
 
 @font-face {
@@ -94,14 +95,34 @@ ul {
 	margin: 0;
 }
 
-progress {
-	background: var(--bg-color);
-	border: var(--border-main);
-	accent-color: var(--text-main-color);
+#playerProgress {
+  background: var(--bg-color);
+  border: var(--border-main);
+  accent-color: var(--text-main-color);
+  width: 100%;
+  height: 12px; /* approximate height */
+  cursor: pointer;
 }
-progress::-moz-progress-bar {
-	background-color: var(--text-main-color); /* Color of the filled portion (Firefox styles the value directly) */
+
+/* For Firefox filled bar similar to progress */
+#playerProgress::-moz-range-progress {
+  background-color: var(--bg-color);
+  height: 100%;
 }
+/* Grabber */
+#playerProgress::-webkit-slider-thumb,
+#playerProgress::-moz-range-thumb {
+/* 	Image size is 12x32 so fit ratio */
+	height: 20px;
+	width: 53px;
+	background: var(--progress-grabber) no-repeat center;
+	image-rendering: pixelated;
+	image-rendering: crisp-edges; /* fallback */
+	background-size: contain;
+	cursor: pointer;
+	border: none;
+}
+
 
 /* Buttons */
 .playerButtons {
