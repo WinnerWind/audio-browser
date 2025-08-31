@@ -25,7 +25,7 @@ async function setDetails() {
 			audioEl.src = audioAPI+fileName
 			audioParentEl.load()
 		} else {
-			infoEl.innerText = "Browse files on the left."
+			infoEl.innerText = "NO AUDIO INSERTED"
 			imageEl.style.display = 'none'
 			audioParentEl.style.display = 'none'
 		}
