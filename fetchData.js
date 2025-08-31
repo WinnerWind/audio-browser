@@ -2,12 +2,15 @@ const infoEl = document.getElementById("songInfo")
 const imageEl = document.getElementById("albumArt")
 const audioEl = document.getElementById("songAudioSrc")
 const audioParentEl = document.getElementById("songAudio")
+const filesEl = document.getElementById("fileListing")
 
+document.addEventListener('DOMContentLoaded', SetListing)
 document.addEventListener('DOMContentLoaded', setDetails)
 
+// let apiURL = "http://192.168.68.105:5001/music/"
+let apiURL = "https://api.winnerwind.in/music/"
+
 async function setDetails() {
-	let apiURL = "https://api.winnerwind.in/music/"
-	// let apiURL = "http://192.168.68.105:5001/music/"
 	let imagesAPI = apiURL + "images/"
 	let dataAPI = apiURL + "data/"
 	let audioAPI = apiURL + "audio/"
@@ -28,3 +31,25 @@ async function setDetails() {
 		}
 	})
 }
+
+function SetListing() {
+	let listingURL = apiURL + "listing"
+
+	let currentPath = window.location.pathname;
+	let basePath = currentPath.substring(0, currentPath.lastIndexOf('/'));
+
+	fetch(listingURL).then(response => response.json()).
+	then(data => {
+		data.forEach(name => {
+			let newPoint = document.createElement('li')
+			let newLink = document.createElement('a')
+			newLink.href = basePath + "/" + name
+			newLink.classList.add("fileLink")
+			newLink.textContent = name
+
+			newPoint.appendChild(newLink)
+			filesEl.appendChild(newPoint)
+		})
+	})
+}
+
