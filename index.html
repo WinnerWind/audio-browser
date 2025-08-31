@@ -16,7 +16,14 @@
 			<img id="albumArt" width="256" height="256"/>
 			<div class="playerInfo">
 				<span id="songInfo" class="songInfo">Loading track....</span>
-				<audio id="songAudio" controls>
+				<progress value="0" max="100" id=playerProgress>
+				</progress>
+				<span id="time">00:00:00 / ??:??:??</span>
+				<div class="playerButtons">
+					<button class="iconButton pauseButton" id="playPauseButton"> </button>
+					<button class="iconButton download" id="download"></button>
+				</div>
+				<audio id="songAudio">
 					<source id="songAudioSrc"></source>
 				</audio>
 			</div>
@@ -24,5 +31,6 @@
 		<script src="scrollText.js"></script>
 		<script src="fetchData.js"></script>
 		<script src="search.js"></script>
+		<script src="playerControls.js"></script>
 	</body>
 </html>
