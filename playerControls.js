@@ -65,3 +65,10 @@ home.addEventListener('click', () => {
 	let homeUrl = url.replace(fileName, "")
 	window.open(homeUrl, "_self")
 })
+
+previousButton.addEventListener('click', () => {
+	window.open(previousSongLink, "_self")
+})
+nextButton.addEventListener('click', () => {
+	window.open(nextSongLink, "_self")
+})

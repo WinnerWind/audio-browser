@@ -18,6 +18,8 @@
 	--download-button: url('assets/download.png');
 	--eject-button: url('assets/eject.png');
 	--progress-grabber: url('assets/grabber-large.png');
+	--next-button: url('assets/next.png');
+	--previous-button: url('assets/previous.png');
 }
 
 @font-face {
@@ -175,6 +177,12 @@ ul {
 }
 .iconButton.home {
 	background-image: var(--eject-button);
+}
+.iconButton.previous {
+	background-image: var(--previous-button);
+}
+.iconButton.next {
+	background-image: var(--next-button);
 }
 /* Links */
 a {

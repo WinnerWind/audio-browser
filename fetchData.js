@@ -5,6 +5,8 @@ const audioParentEl = document.getElementById("songAudio")
 const filesEl = document.getElementById("fileListing")
 const playlistContainer = document.getElementById("playlists")
 const playlistEl = document.getElementById("playlistList")
+const previousButton = document.getElementById("previous")
+const nextButton = document.getElementById("next")
 
 document.addEventListener('DOMContentLoaded', SetListing)
 document.addEventListener('DOMContentLoaded', setDetails)
@@ -18,7 +20,11 @@ let dataAPI = apiURL + "data/"
 let audioAPI = apiURL + "audio/"
 let url = window.location.href
 let fileName = (url.split('/')).pop()
-let basePath = url.substring(0, url.lastIndexOf('/'))
+let urlWithoutQuery = url.split("?")[0]
+let basePath = urlWithoutQuery.substring(0, urlWithoutQuery.lastIndexOf('/'))
+
+let nextSongLink = ""
+let previousSongLink = ""
 
 async function setDetails() {
 	// Set player content
@@ -70,7 +76,9 @@ function SetListing() {
 
 function SetPlaylistContent(data) {
 data.songs.forEach((songName, songIndex) => {
-  let localParams = new URLSearchParams(globalParams.toString()); // clone globalParams
+  let localParams = new URLSearchParams(); // clone globalParams
+  localParams.set("q", globalParams.get("q"))
+  localParams.set("list", globalParams.get("list"))
   localParams.set("index", songIndex);
 
   let newPoint = document.createElement('li');
@@ -81,12 +89,21 @@ data.songs.forEach((songName, songIndex) => {
   if (songIndex == Number(globalParams.get("index"))) {
     newLink.textContent = ">>> " + songName;
     newLink.classList.add("enabledLink");
-  } else {
+  } else if (songIndex == Number(globalParams.get("index"))-1) {
+	  previousSongLink = newLink.href
+	  newLink.textContent = songName
+	} else if (songIndex == Number(globalParams.get("index"))+1) {
+		nextSongLink = newLink.href
+		newLink.textContent = songName
+	} else {
     newLink.textContent = songName;
   }
 
   newPoint.appendChild(newLink);
   playlistEl.appendChild(newPoint);
+
+  previousButton.style.display = "inline-flex"
+  nextButton.style.display = "inline-flex"
 });
 }
 

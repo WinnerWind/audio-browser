@@ -6,7 +6,7 @@ let scrollingText = "";         // The string being scrolled
 
 // Scroll function
 function scrollTextJittery() {
-  if (!audio.paused) {
+  if (!audioParentEl.paused) {
     if (scrollingText.length > 1) {
       scrollingText = scrollingText.slice(1) + scrollingText[0];
       songInfo.textContent = scrollingText;
