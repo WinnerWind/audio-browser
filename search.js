@@ -10,7 +10,6 @@ searchEl.addEventListener('keydown', (event) => {
 
 document.addEventListener('DOMContentLoaded', () => {
 	const params = new URLSearchParams(window.location.search)
-	console.log(params.get("q"))
 	searchEl.value = params.get("q")
 })
 
