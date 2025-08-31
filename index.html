@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html lang="">
-  <head>
-    <meta charset="utf-8">
-    <title>AudioBrowser</title>
-  </head>
-  <body>
-    <img id="albumArt" />
-    <span id="songInfo"></span>
-    <audio id="songAudio" controls>
-      <source id="songAudioSrc"></source>
-    </audio>
-    <script src="fetchData.js"></script>
-  </body>
+	<head>
+		<meta charset="utf-8">
+		<title>AudioBrowser</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<div id="files" class="files">
+			<ul>
+				<li> Test </li>
+				<li> Test </li>
+			</ul>
+		</div>
+		<hr>
+		<div class="player">
+			<img id="albumArt" width="128" height="128"/>
+			<div class="playerInfo">
+				<span id="songInfo" class="songInfo">Test Song Info</span>
+				<audio id="songAudio" controls>
+					<source id="songAudioSrc"></source>
+				</audio>
+			</div>
+		</div>
+		<script src="scrollText.js"></script>
+		<script src="fetchData.js"></script>
+	</body>
 </html>

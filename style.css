@@ -1,0 +1,47 @@
+:root {
+	--bg-color: #000000;
+	--text-main-color: #06FFFF;
+	--main-margin: 10px;
+}
+
+@font-face {
+  font-family: "Departure Mono";
+  src: url("fonts/departure-mono.woff2")
+}
+
+html {
+	background-color: var(--bg-color);
+	color: var(--text-main-color);
+	font-family: "Departure Mono";
+}
+body {
+	display: inline-flex;
+	margin: var(--main-margin);
+	gap: var(--main-margin);
+}
+
+.player {
+	display: flex;
+	gap: var(--main-margin);
+}
+
+.playerInfo {
+	display: flex;
+	flex-direction: column;
+	gap: var(--main-margin);
+	align-content: left;
+}
+
+.songInfo {
+	background-color: var(--text-main-color);
+	color: var(--bg-color);
+	display: inline-block;
+	box-sizing: border-box;
+	overflow: hidden;
+	white-space: nowrap;
+	width: 500px;
+}
+
+ul {
+	list-style-type: none;
+}
