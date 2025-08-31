@@ -4,27 +4,39 @@ const audioEl = document.getElementById("songAudioSrc")
 const audioParentEl = document.getElementById("songAudio")
 const filesEl = document.getElementById("fileListing")
 const playlistContainer = document.getElementById("playlists")
+const playlistEl = document.getElementById("playlistList")
 
 document.addEventListener('DOMContentLoaded', SetListing)
 document.addEventListener('DOMContentLoaded', setDetails)
 
 // let apiURL = "http://192.168.68.105:5001/music/"
 let apiURL = "https://api.winnerwind.in/music/"
+let globalParams = new URLSearchParams(window.location.search)
+
+let imagesAPI = apiURL + "images/"
+let dataAPI = apiURL + "data/"
+let audioAPI = apiURL + "audio/"
+let url = window.location.href
+let fileName = (url.split('/')).pop()
+let basePath = url.substring(0, url.lastIndexOf('/'))
 
 async function setDetails() {
-	let imagesAPI = apiURL + "images/"
-	let dataAPI = apiURL + "data/"
-	let audioAPI = apiURL + "audio/"
-	let url = window.location.href
-	let fileName = (url.split('/')).pop()
-
+	// Set player content
 	let data = await fetch(dataAPI+fileName).then(response => response.json()).
 	then(data => {
-		if (data.title != "Path does not exist!") {
+		if ("title" in data && data.title != "Path does not exist!") {
 			infoEl.innerText = `${data.title} - ${data.album} - ${data.artists.join(", ")}`
 			imageEl.src = imagesAPI+fileName
 			audioEl.src = audioAPI+fileName
 			audioParentEl.load()
+			if (globalParams.get("list")) {
+				fetch(dataAPI+globalParams.get("list")).then(response => response.json()).then(data => SetPlaylistContent(data))
+			}
+		} else if (data.songs) { //Current URL points to a playlist
+			globalParams.set("list", fileName)
+			globalParams.set("index", 0)
+			SetPlaylistContent(data)
+			window.open(basePath + "/" + GetSongFromPlaylistIndex(data, 0) + "?" + globalParams.toString(), "_self")
 		} else {
 			infoEl.innerText = "NO AUDIO INSERTED"
 			imageEl.style.display = 'none'
@@ -38,9 +50,6 @@ function SetListing() {
 	let listingURL = apiURL + "listing"
 	const params = new URLSearchParams(window.location.search)
 	const query = params.get("q")
-
-	let currentPath = window.location.pathname;
-	let basePath = currentPath.substring(0, currentPath.lastIndexOf('/'));
 
 	fetch(listingURL).then(response => response.json()).
 	then(data => {
@@ -57,5 +66,31 @@ function SetListing() {
 			}
 		})
 	})
+}
+
+function SetPlaylistContent(data) {
+data.songs.forEach((songName, songIndex) => {
+  let localParams = new URLSearchParams(globalParams.toString()); // clone globalParams
+  localParams.set("index", songIndex);
+
+  let newPoint = document.createElement('li');
+  let newLink = document.createElement('a');
+  newLink.href = basePath + "/" + songName + "?" + localParams.toString();
+  newLink.classList.add("fileLink");
+
+  if (songIndex == Number(globalParams.get("index"))) {
+    newLink.textContent = ">>> " + songName;
+    newLink.classList.add("enabledLink");
+  } else {
+    newLink.textContent = songName;
+  }
+
+  newPoint.appendChild(newLink);
+  playlistEl.appendChild(newPoint);
+});
+}
+
+function GetSongFromPlaylistIndex(data, index) {
+	return data.songs[index]
 }
 
