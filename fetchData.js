@@ -34,6 +34,8 @@ async function setDetails() {
 
 function SetListing() {
 	let listingURL = apiURL + "listing"
+	const params = new URLSearchParams(window.location.search)
+	const query = params.get("q")
 
 	let currentPath = window.location.pathname;
 	let basePath = currentPath.substring(0, currentPath.lastIndexOf('/'));
@@ -41,14 +43,16 @@ function SetListing() {
 	fetch(listingURL).then(response => response.json()).
 	then(data => {
 		data.forEach(name => {
-			let newPoint = document.createElement('li')
-			let newLink = document.createElement('a')
-			newLink.href = basePath + "/" + name
-			newLink.classList.add("fileLink")
-			newLink.textContent = name
+			if (!query || query.trim() === "" || name.toLowerCase().includes(query.toLowerCase())) {
+				let newPoint = document.createElement('li')
+				let newLink = document.createElement('a')
+				newLink.href = basePath + "/" + name + "?" + params.toString() //Preserve search query
+				newLink.classList.add("fileLink")
+				newLink.textContent = name
 
-			newPoint.appendChild(newLink)
-			filesEl.appendChild(newPoint)
+				newPoint.appendChild(newLink)
+				filesEl.appendChild(newPoint)
+			}
 		})
 	})
 }
