@@ -1,9 +1,17 @@
 :root {
 	--bg-color: #000000;
 	--text-main-color: #06FFFF;
+	--text-accent-color: #FF0606;
+	--border-color: #06ffff;
+	--border-accent-color: #ff0606;
+
 	--main-margin: 10px;
 
 	--font-size-large: 32px;
+
+	--border-size: 10px;
+	--border-main: 2px solid var(--border-color);
+	--border-accent: 2px solid var(--border-accent-color)
 }
 
 @font-face {
@@ -17,17 +25,20 @@ html {
 	font-family: "Departure Mono";
 }
 body {
-	display: inline-flex;
+	display: flex;
 	margin: var(--main-margin);
 	gap: var(--main-margin);
-	width: 100vw;
-	height: 100vh;
-	overflow: hidden;
+	padding: var(--main-margin);
+	width: 97%;
+	height: 100%;
+	border: var(--border-main);
 }
 
 .player {
 	display: flex;
 	gap: var(--main-margin);
+	border: var(--border-main);
+	padding: var(--main-margin);
 }
 
 .playerInfo {
@@ -44,15 +55,15 @@ body {
 	box-sizing: border-box;
 	overflow: hidden;
 	white-space: nowrap;
-	width: 500px;
+	width: 36vw;
 	font-size: var(--font-size-large);
 }
 
 .files {
 	overflow-y: auto;
 	overflow-x: hidden;
-	width: 40vw;
-	height: 90vh;
+	width: 39vw;
+	height: 85vh;
 }
 .fileLink {
 	overflow: hidden;
@@ -60,15 +71,41 @@ body {
 }
 
 .searchBar {
-	width: 100%;
+	width: 98%;
+	border: var(--border-accent);
+	background-color: var(--bg-color);
+	color: var(--text-accent-color);
+
 }
 
 .leftPanel {
-	margin: var(--main-margin);
+	gap: var(--main-margin);
+	border: var(--border-main);
+	padding: var(--main-margin);
 }
 
 ul {
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
+}
+
+/* Links */
+a {
+  color: var(--text-main-color);
+}
+
+a:link {
+  text-decoration: none;
+  color: var(--text-main-color);
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+a:visited {
+  color: var(--text-main-color); /* Changed to use the same color as a:link */
+}
+
+a:hover {
+  color: var(--text-accent-color);
+  text-shadow: 0 0 5px var(--text-accent-color); /* Subtle glow on hover */
 }
