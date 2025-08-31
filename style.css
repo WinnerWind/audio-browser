@@ -41,6 +41,7 @@ body {
 
 .player {
 	display: flex;
+	width: 100%;
 	gap: var(--main-margin);
 	border: var(--border-main);
 	padding: var(--main-margin);
@@ -48,6 +49,7 @@ body {
 
 .playerInfo {
 	display: flex;
+	width: 100%;
 	flex-direction: column;
 	gap: var(--main-margin);
 	align-content: left;
@@ -60,7 +62,7 @@ body {
 	box-sizing: border-box;
 	overflow: hidden;
 	white-space: nowrap;
-	width: 36vw;
+	width: 36.5vw;
 	font-size: var(--font-size-large);
 }
 
