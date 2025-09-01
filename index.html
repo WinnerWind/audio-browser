@@ -17,7 +17,7 @@
 				<img id="albumArt" width="256" height="256"/>
 				<div class="playerInfo">
 					<span id="songInfo" class="songInfo">Loading track....</span>
-					<input type="range" value="0" max="100" id="playerProgress" step="1">
+					<input type="range" value="0" max="100" id="playerProgress" step="1" />
 					<span id="time">00:00:00 / ??:??:??</span>
 					<div class="playerButtons">
 						<button class="iconButton pauseButton" id="playPauseButton"> </button>
@@ -25,6 +25,7 @@
 						<button class="iconButton home" id="home"></button>
 						<button class="iconButton previous" id="previous" style="display:none"></button>
 						<button class="iconButton next" id="next" style="display:none"></button>
+						<input type="range" value="0" max="1" id="volume" step="0.1" class="volume"/>
 					</div>
 					<audio id="songAudio">
 						<source id="songAudioSrc"></source>

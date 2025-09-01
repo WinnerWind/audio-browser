@@ -18,6 +18,7 @@
 	--download-button: url('assets/download.png');
 	--eject-button: url('assets/eject.png');
 	--progress-grabber: url('assets/grabber-large.png');
+	--volume-grabber: url('assets/grabber-small.png');
 	--next-button: url('assets/next.png');
 	--previous-button: url('assets/previous.png');
 }
@@ -137,6 +138,35 @@ ul {
 	height: 20px;
 	width: 53px;
 	background: var(--progress-grabber) no-repeat center;
+	image-rendering: pixelated;
+	image-rendering: crisp-edges; /* fallback */
+	background-size: contain;
+	cursor: pointer;
+	border: none;
+}
+
+
+#volume {
+  background: var(--bg-color);
+  border: var(--border-main);
+  accent-color: var(--text-main-color);
+  width: 10vw;
+  height: 12px; /* approximate height */
+  cursor: pointer;
+}
+
+/* For Firefox filled bar similar to progress */
+#volume::-moz-range-progress {
+  background-color: var(--bg-color);
+  height: 100%;
+}
+/* Grabber */
+#volume::-webkit-slider-thumb,
+#volume::-moz-range-thumb {
+/* 	Image size is 12x12 so fit ratio */
+	height: 20px;
+	width: 20px;
+	background: var(--volume-grabber) no-repeat center;
 	image-rendering: pixelated;
 	image-rendering: crisp-edges; /* fallback */
 	background-size: contain;

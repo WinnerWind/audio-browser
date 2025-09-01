@@ -3,6 +3,7 @@ const downloadButton = document.getElementById("download")
 const homeButton = document.getElementById("home")
 
 const progress = document.getElementById("playerProgress")
+const volume = document.getElementById("volume")
 const timeEl = document.getElementById("time")
 
 const audio = document.getElementById("songAudio")
@@ -33,6 +34,7 @@ let totalSeconds = 0
 audio.addEventListener('loadedmetadata', () => {
 	progress.max = audio.duration
 	totalSeconds = audio.duration
+	volume.value = audio.volume
 	let totalSecondsFormatted = String(parseInt(totalSeconds % 60)).padStart(2, '0')
 	let totalMinutes = String(parseInt(totalSeconds / 60)).padStart(2, '0')
 	let totalHours = String(parseInt(totalSeconds / 3600)).padStart(2, '0')
@@ -57,6 +59,10 @@ audio.addEventListener('timeupdate', () =>{
 
 progress.addEventListener('input', () => {
 	audio.currentTime = progress.value
+})
+
+volume.addEventListener('input', () => {
+	audio.volume = volume.value
 })
 
 home.addEventListener('click', () => {
