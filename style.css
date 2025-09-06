@@ -134,6 +134,15 @@ ul {
 	padding: 0;
 	margin: 0;
 }
+hr {
+	color: var(--text-accent-color);
+	background-color: var(--text-accent-color);
+	border: none;
+	height: 2px;
+}
+.metadataLabel {
+	color: var(--text-accent-color);
+}
 
 /* PLAYER PROGRESS SLIDER */
 /* Base styling for all browsers */

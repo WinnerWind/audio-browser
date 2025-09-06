@@ -61,13 +61,26 @@ function SetListing() {
 
 	fetch(listingURL).then(response => response.json()).
 	then(data => {
+		let searchData = data.filter(name => {
+		  return !query || query.trim() === "" || name.toLowerCase().includes(query.toLowerCase());
+		})
+		let newPoint = document.createElement('li')
+		newPoint.textContent = `${searchData.length} entries found${data.length != searchData.length ? " out of " + data.length + " entries.": "."}`
+		newPoint.classList.add("metadataLabel")
+		filesEl.appendChild(document.createElement('hr'))
+		filesEl.appendChild(newPoint)
+		filesEl.appendChild(document.createElement('hr'))
+
 		data.forEach(name => {
 			if (!query || query.trim() === "" || name.toLowerCase().includes(query.toLowerCase())) {
 				let newPoint = document.createElement('li')
 				let newLink = document.createElement('a')
 				newLink.href = basePath + "/" + name
 				newLink.classList.add("fileLink")
-				newLink.textContent = name
+				let songName = name.split(" - ")[2].split(".")[0]
+				let artistName = name.split(" - ")[0]
+				let albumName = name.split(" - ")[1]
+				newLink.textContent = `${songName} - ${artistName} - ${albumName}`
 
 				newPoint.appendChild(newLink)
 				filesEl.appendChild(newPoint)
