@@ -102,7 +102,25 @@ body {
 	border: var(--border-accent);
 	background-color: var(--bg-color);
 	color: var(--text-accent-color);
+	font-family: "Departure Mono"
+}
 
+.searchBar::placeholder {
+  color: var(--text-accent-color);
+  opacity: 1; /* Ensures the color appears vivid in Firefox */
+}
+/* Firefox */
+.searchBar::-moz-placeholder {
+  color: var(--text-accent-color);
+  opacity: 1;
+}
+/* Internet Explorer 10-11 */
+.searchBar:-ms-input-placeholder {
+  color: var(--text-accent-color);
+}
+/* Edge */
+.searchBar::-ms-input-placeholder {
+  color: var(--text-accent-color);
 }
 
 .leftPanel {
@@ -117,61 +135,154 @@ ul {
 	margin: 0;
 }
 
-#playerProgress {
+/* PLAYER PROGRESS SLIDER */
+/* Base styling for all browsers */
+input[type="range"]#playerProgress {
   background: var(--bg-color);
   border: var(--border-main);
   accent-color: var(--text-main-color);
   width: 36.1vw;
-  height: 12px; /* approximate height */
+  height: 12px;
   cursor: pointer;
+  /* Remove default appearance for better custom styling */
+  -webkit-appearance: none; /* Chrome/Safari */
+  appearance: none;
 }
 
-/* For Firefox filled bar similar to progress */
-#playerProgress::-moz-range-progress {
+/* WebKit (Chromium, Safari) Track Styling */
+input[type="range"]#playerProgress::-webkit-slider-runnable-track {
+  background: var(--bg-color);
+  height: 12px;
+  border-radius: 5px;
+}
+
+/* WebKit Thumb Styling */
+input[type="range"]#playerProgress::-webkit-slider-thumb {
+  height: 20px;
+  width: 53px;
+  background: var(--progress-grabber) no-repeat center;
+  background-size: contain;
+  image-rendering: pixelated;
+  cursor: pointer;
+  border: none;
+  /* Remove default outline for Chrome */
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -4px; /* centers thumb vertically */
+}
+
+/* Firefox Track Styling */
+input[type="range"]#playerProgress::-moz-range-track {
+  background: var(--bg-color);
+  height: 12px;
+  border-radius: 5px;
+}
+
+input[type="range"]#playerProgress::-moz-range-progress {
   background-color: var(--bg-color);
   height: 100%;
 }
-/* Grabber */
-#playerProgress::-webkit-slider-thumb,
-#playerProgress::-moz-range-thumb {
-/* 	Image size is 12x32 so fit ratio */
-	height: 20px;
-	width: 53px;
-	background: var(--progress-grabber) no-repeat center;
-	image-rendering: pixelated;
-	image-rendering: crisp-edges; /* fallback */
-	background-size: contain;
-	cursor: pointer;
-	border: none;
+
+/* Firefox Thumb Styling */
+input[type="range"]#playerProgress::-moz-range-thumb {
+  height: 20px;
+  width: 53px;
+  background: var(--progress-grabber) no-repeat center;
+  background-size: contain;
+  image-rendering: pixelated;
+  cursor: pointer;
+  border: none;
 }
 
+/* IE Track Styling (Old Edge, Optional) */
+input[type="range"]#playerProgress::-ms-fill-lower,
+input[type="range"]#playerProgress::-ms-fill-upper {
+  background: var(--bg-color);
+  height: 12px;
+  border-radius: 5px;
+}
 
-#volume {
+input[type="range"]#playerProgress::-ms-thumb {
+  height: 20px;
+  width: 53px;
+  background: var(--progress-grabber) no-repeat center;
+  background-size: contain;
+  image-rendering: pixelated;
+  cursor: pointer;
+  border: none;
+}
+
+/* VOLUME SLIDER */
+input[type="range"]#volume {
   background: var(--bg-color);
   border: var(--border-main);
   accent-color: var(--text-main-color);
   width: 10vw;
-  height: 12px; /* approximate height */
+  height: 12px;
   cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
-/* For Firefox filled bar similar to progress */
-#volume::-moz-range-progress {
+input[type="range"]#volume::-webkit-slider-runnable-track {
+  background: var(--bg-color);
+  height: 12px;
+  border-radius: 5px;
+}
+
+input[type="range"]#volume::-webkit-slider-thumb {
+  height: 20px;
+  width: 20px;
+  background: var(--volume-grabber) no-repeat center;
+  background-size: contain;
+  image-rendering: pixelated;
+  cursor: pointer;
+  border: none;
+  -webkit-appearance: none;
+  margin-top: -4px;
+}
+
+input[type="range"]#volume::-moz-range-track {
+  background: var(--bg-color);
+  height: 12px;
+  border-radius: 5px;
+}
+
+input[type="range"]#volume::-moz-range-progress {
   background-color: var(--bg-color);
   height: 100%;
 }
-/* Grabber */
-#volume::-webkit-slider-thumb,
-#volume::-moz-range-thumb {
-/* 	Image size is 12x12 so fit ratio */
-	height: 20px;
-	width: 20px;
-	background: var(--volume-grabber) no-repeat center;
-	image-rendering: pixelated;
-	image-rendering: crisp-edges; /* fallback */
-	background-size: contain;
-	cursor: pointer;
-	border: none;
+
+input[type="range"]#volume::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  background: var(--volume-grabber) no-repeat center;
+  background-size: contain;
+  image-rendering: pixelated;
+  cursor: pointer;
+  border: none;
+}
+
+input[type="range"]#volume::-ms-fill-lower,
+input[type="range"]#volume::-ms-fill-upper {
+  background: var(--bg-color);
+  height: 12px;
+  border-radius: 5px;
+}
+
+input[type="range"]#volume::-ms-thumb {
+  height: 20px;
+  width: 20px;
+  background: var(--volume-grabber) no-repeat center;
+  background-size: contain;
+  image-rendering: pixelated;
+  cursor: pointer;
+  border: none;
+}
+
+/* Remove outline & default styling for Chrome focus/active */
+input[type="range"]:focus {
+  outline: none;
 }
 
 
