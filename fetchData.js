@@ -39,10 +39,12 @@ async function setDetails() {
 				fetch(dataAPI+globalParams.get("list")).then(response => response.json()).then(data => SetPlaylistContent(data))
 			}
 		} else if (data.songs) { //Current URL points to a playlist
-			globalParams.set("list", fileName)
-			globalParams.set("index", 0)
+			let params = new URLSearchParams
+			params.set("list", fileName)
+			params.set("index", 0)
+			console.log(params.toString())
 			SetPlaylistContent(data)
-			window.open(basePath + "/" + GetSongFromPlaylistIndex(data, 0) + "?" + globalParams.toString(), "_self")
+			window.open(basePath + "/" + GetSongFromPlaylistIndex(data, 0) + "?" + params.toString(), "_self")
 		} else {
 			infoEl.innerText = "NO AUDIO INSERTED"
 			imageEl.style.display = 'none'
@@ -54,8 +56,8 @@ async function setDetails() {
 
 function SetListing() {
 	let listingURL = apiURL + "listing"
-	const params = new URLSearchParams(window.location.search)
-	const query = params.get("q")
+	const params = new URLSearchParams()
+	const query = globalParams.get("q")
 
 	fetch(listingURL).then(response => response.json()).
 	then(data => {
@@ -63,7 +65,7 @@ function SetListing() {
 			if (!query || query.trim() === "" || name.toLowerCase().includes(query.toLowerCase())) {
 				let newPoint = document.createElement('li')
 				let newLink = document.createElement('a')
-				newLink.href = basePath + "/" + name + "?" + params.toString() //Preserve search query
+				newLink.href = basePath + "/" + name
 				newLink.classList.add("fileLink")
 				newLink.textContent = name
 
@@ -77,7 +79,6 @@ function SetListing() {
 function SetPlaylistContent(data) {
 data.songs.forEach((songName, songIndex) => {
   let localParams = new URLSearchParams(); // clone globalParams
-  localParams.set("q", globalParams.get("q"))
   localParams.set("list", globalParams.get("list"))
   localParams.set("index", songIndex);
 
