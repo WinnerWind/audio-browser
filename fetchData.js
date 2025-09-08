@@ -58,6 +58,7 @@ function SetListing() {
 	let listingURL = apiURL + "listing"
 	const params = new URLSearchParams()
 	const query = globalParams.get("q")
+	params.set("q", query)
 
 	fetch(listingURL).then(response => response.json()).
 	then(data => {
@@ -75,12 +76,9 @@ function SetListing() {
 			if (!query || query.trim() === "" || name.toLowerCase().includes(query.toLowerCase())) {
 				let newPoint = document.createElement('li')
 				let newLink = document.createElement('a')
-				newLink.href = basePath + "/" + name
+				newLink.href = basePath + "/" + name + "?" + globalParams.toString()
 				newLink.classList.add("fileLink")
-				let songName = name.split(" - ")[2].split(".")[0]
-				let artistName = name.split(" - ")[0]
-				let albumName = name.split(" - ")[1]
-				newLink.textContent = `${songName} - ${artistName} - ${albumName}`
+				newLink.textContent = name
 
 				newPoint.appendChild(newLink)
 				filesEl.appendChild(newPoint)
