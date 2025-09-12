@@ -76,7 +76,7 @@ function SetListing() {
 			if (!query || query.trim() === "" || name.toLowerCase().includes(query.toLowerCase())) {
 				let newPoint = document.createElement('li')
 				let newLink = document.createElement('a')
-				newLink.href = basePath + "/" + name + "?" + globalParams.toString()
+				newLink.href = basePath + "/" + name
 				newLink.classList.add("fileLink")
 				newLink.textContent = name
 
@@ -95,7 +95,7 @@ data.songs.forEach((songName, songIndex) => {
 
   let newPoint = document.createElement('li');
   let newLink = document.createElement('a');
-  newLink.href = basePath + "/" + songName + "?" + localParams.toString();
+  newLink.href = basePath + "/" + songName;
   newLink.classList.add("fileLink");
 
   if (songIndex == Number(globalParams.get("index"))) {
