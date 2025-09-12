@@ -95,7 +95,7 @@ data.songs.forEach((songName, songIndex) => {
 
   let newPoint = document.createElement('li');
   let newLink = document.createElement('a');
-  newLink.href = basePath + "/" + songName + "?" + localParams.toString();
+  newLink.href = basePath + "/" + songName;
   newLink.classList.add("fileLink");
 
   if (songIndex == Number(globalParams.get("index"))) {
